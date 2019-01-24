@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>SignUp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formSignUp">
+    <ion-item>
+      <ion-input type="text" formControlName="name" placeholder="Nombre"></ion-input>
+      <span *ngIf="formSignUp.get('name').touched && formSignUp.get('name').hasError('required')">Required</span>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" formControlName="age" placeholder="Edad"></ion-input>
+      <span *ngIf="formSignUp.get('age').touched && formSignUp.get('age').hasError('required')">Required</span>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input type="email" formControlName="email" placeholder="Correo"></ion-input>
+      <span *ngIf="formSignUp.get('email').touched && formSignUp.get('email').hasError('required')">Required</span>
+      <span *ngIf="formSignUp.get('email').touched && formSignUp.get('email').hasError('pattern')">Email is invalid</span>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input type="password" formControlName="password" placeholder="Contraseña"></ion-input>
+      <span *ngIf="formSignUp.get('password').touched && formSignUp.get('password').hasError('password')">Requerido</span>
+    </ion-item>
+
+    <ion-button type="button" (click)="save()" [disabled]="formSignUp.invalid">Guardar</ion-button>
+  </form>
+  <ion-button (click)="back()">Regresar</ion-button>
+</ion-content>

@@ -39,6 +39,14 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
+      },
+      { 
+        path: 'home', 
+        loadChildren: '../home/home.module#HomePageModule'
+      },
+      { 
+        path: 'details', 
+        loadChildren: '../details/details.module#DetailsPageModule'
       }
     ]
   },

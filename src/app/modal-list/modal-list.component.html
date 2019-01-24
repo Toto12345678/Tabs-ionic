@@ -1,0 +1,8 @@
+<form [formGroup]="formList">
+  <ion-item>
+    <ion-input type="text" formControlName="name" placeholder="Nombre de la lista"></ion-input>
+    <span *ngIf="formList.get('name').touched && formList.get('name').hasError('required')">Required</span>
+  </ion-item>
+
+  <ion-button type="button" (click)="createList()" [disabled]="formList.invalid">Crear</ion-button>
+</form>

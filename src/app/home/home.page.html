@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)='openModal()'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <h3>
+          Lista
+          <span style='position: absolute; right: 0px; color:rgb(19, 102, 102); font-weight: 700;'> $1500.00</span>
+        </h3>
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      16 de Enero del 2018
+      <span style='position: absolute; right: 15px; color:darkcyan; font-weight: 700;'> Terminado</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <h3>
+            Lista 2
+            <span style='position: absolute; right: 0px; color:rgb(19, 102, 102); font-weight: 700;'> $15.00</span>
+          </h3>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        16 de Enero del 2018
+        <span style='position: absolute; right: 15px; color:rgb(175, 56, 41); font-weight: 700;'> En proceso</span>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

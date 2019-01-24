@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Editar perfil
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-card class="welcome-card">
+    
+    <ion-card-content>
+      <form [formGroup]="formEdit">
+        <ion-item>
+          <ion-input type="text" formControlName="name" placeholder="Nombre" [(ngModel)]='data.name'></ion-input>
+          <span *ngIf="formEdit.get('name').touched && formEdit.get('name').hasError('required')">Required</span>
+        </ion-item>
+    
+        <ion-item>
+          <ion-input type="number" formControlName="age" placeholder="Edad" [(ngModel)]='data.age'></ion-input>
+          <span *ngIf="formEdit.get('age').touched && formEdit.get('age').hasError('required')">Required</span>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input type="email" formControlName="email" placeholder="Correo" [(ngModel)]='data.email'></ion-input>
+          <span *ngIf="formEdit.get('email').touched && formEdit.get('email').hasError('required')">Required</span>
+          <span *ngIf="formEdit.get('email').touched && formEdit.get('email').hasError('pattern')">Email is invalid</span>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input type="password" formControlName="password" placeholder="Contraseña" [(ngModel)]='data.password'></ion-input>
+          <span *ngIf="formEdit.get('password').touched && formEdit.get('password').hasError('password')">Requerido</span>
+        </ion-item>
+    
+        <ion-button type="button" (click)="save()" [disabled]="formEdit.invalid">Guardar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
