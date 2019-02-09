@@ -3,35 +3,27 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>My Navigation Bar</ion-title>
+    <ion-title>{{titleList}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <h3>
-          Lista
-          <span style='position: absolute; right: 0px; color:rgb(19, 102, 102); font-weight: 700;'> 
-            $1500.00
-            <ion-button size='small' fill='clear'>
-              <ion-icon slot='icon-only' name='more'></ion-icon>
-            </ion-button>
-          </span>
-        </h3>
-      </ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <!--Button fixed -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createItem()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-  <ion-card>
+  <ion-card *ngFor="let item of list">
+    <ion-img [src]="item.image" style='height: 7vh; width: 100%;'></ion-img>
     <ion-card-header>
       <ion-card-title>
         <h3>
-          Lista
+          {{item.name}}
           <span style='position: absolute; right: 0px; color:rgb(19, 102, 102); font-weight: 700;'> 
-            $1500.00
-            <ion-button size='small' fill='clear'>
+            ${{item.price}}
+            <ion-button size='small' fill='clear' (click)="openActionSheet(item.id)">
               <ion-icon slot='icon-only' name='more'></ion-icon>
             </ion-button>
           </span>
@@ -39,21 +31,5 @@
       </ion-card-title>
     </ion-card-header>
   </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <h3>
-          Lista
-          <span style='position: absolute; right: 0px; color:rgb(19, 102, 102); font-weight: 700;'> 
-            $1500.00
-            <ion-button size='small' fill='clear'>
-              <ion-icon slot='icon-only' name='more'></ion-icon>
-            </ion-button>
-          </span>
-        </h3>
-      </ion-card-title>
-    </ion-card-header>
-  </ion-card>
-  
 </ion-content>
+  <!-- <ion-img [src]="photo"></ion-img> -->

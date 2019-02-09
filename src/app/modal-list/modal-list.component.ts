@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-modal-list',
@@ -13,7 +14,8 @@ export class ModalListComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private router : Router,
-    private modal : ModalController
+    private modal : ModalController,
+    private dbService : DatabaseService
   ) { }
 
   ngOnInit() {
@@ -24,8 +26,14 @@ export class ModalListComponent implements OnInit {
 
   async createList() {
     console.log(this.formList.value);
-    this.modal.dismiss();
-    this.router.navigateByUrl('/dashboard/tabs/details');
+    this.dbService.createList(this.formList.get('name').value).then(response =>{
+      console.log(response) // reload page of lists: this.dbService.getAllList().then
+      //actualizar lista, editarla y eliminarlas, junto con el join
+      this.modal.dismiss();
+      //this.router.navigateByUrl('/dashboard/tabs/details');
+    }).catch (e => {
+      console.log(e)
+    })
   }
 
 }

@@ -1,0 +1,22 @@
+<form [formGroup]="formCreateItem">
+  <ion-item>
+    <ion-input type="text" formControlName="name" placeholder="Nombre del item"></ion-input>
+    <span *ngIf="formCreateItem.get('name').touched && formCreateItem.get('name').hasError('required')">Required</span>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" formControlName="description" placeholder="Descripcion"></ion-input>
+    <span *ngIf="formCreateItem.get('description').touched && formCreateItem.get('description').hasError('required')">Required</span>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="number" formControlName="price" placeholder="Precio"></ion-input>
+    <span *ngIf="formCreateItem.get('price').touched && formCreateItem.get('price').hasError('required')">Required</span>
+  </ion-item>
+
+  <ion-button expand="block" color="light" (click)="takePhoto()">Tomar foto</ion-button>
+  <span *ngIf="formCreateItem.get('image').touched && formCreateItem.get('image').hasError('required')">Required</span>
+
+  <ion-button type="button" (click)="createItem()" [disabled]="formCreateItem.invalid">Añadir item</ion-button>
+  <ion-img [src]="formCreateItem.get('image').value"></ion-img>
+</form>

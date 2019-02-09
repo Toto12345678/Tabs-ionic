@@ -1,0 +1,27 @@
+<form [formGroup]="formEdit">
+  <ion-item>
+    <ion-input type="text" formControlName="name" placeholder="Nombre de la lista"></ion-input>
+    <span *ngIf="formEdit.get('name').touched && formEdit.get('name').hasError('required')">Required</span>
+  </ion-item>
+
+  <ion-list>
+    <ion-radio-group formControlName="status">
+      <ion-list-header>
+        Opciones
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Terminado</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>En proceso</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-button type="button" (click)="editList()" [disabled]="formEdit.invalid">Editar</ion-button>
+</form>

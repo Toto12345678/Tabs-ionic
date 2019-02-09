@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 import { DatabaseService } from './database.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { DatabaseService } from './database.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  private db: SQLiteObject
   private query: string = 'create table list(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(32), date DATE, status INTEGER);'+
   ' create table list_item(id INTEGER PRIMARY KEY AUTOINCREMENT, list_id INTEGER, name VARCHAR(100), description TEXT, price FLOAT, image TEXT, FOREIGN KEY(list_id) REFERENCES list(id) ON UPDATE CASCADE);'
 
@@ -28,7 +27,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
       this.createDatabase();
     });
   }
@@ -37,14 +36,12 @@ export class AppComponent {
     this.sqlite.create({
       name: 'data.db',
       location: 'default'
-    })
-      .then((db: SQLiteObject) => {
-        db.executeSql(this.query, [])
-          .then(() => {
-            this.dbService.createList(db)
-          })
-          .catch(e => console.log(e))
-      })
-      .catch(e => console.log(e))
+    }).then((db) => {
+        console.log('Excecuted sql');
+        this.dbService.setDatabase(db)
+        return this.dbService.createTables()
+      }).then(()=>{
+        this.splashScreen.hide()
+      }).catch(e => console.error(e))
   }
 }
